@@ -1,0 +1,14 @@
+registry:
+  container_name: registry
+  image: registry:2
+
+proxy:
+  container_name: proxy
+  image: nginx
+  links:
+    - registry
+  ports:
+    - "5000:5000"
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    - ./passwords:/etc/nginx/password_folder/passwords
